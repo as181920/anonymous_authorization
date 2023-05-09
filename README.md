@@ -1,24 +1,13 @@
 # AnonymousAuthorization
-Short description and motivation.
+Enable Anonymous authorization for resource by access_code(password)
 
 ## Usage
-How to use my plugin.
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "anonymous_authorization"
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install anonymous_authorization
+gem "anonymous_authorization", git: "git@github.com:as181920/anonymous_authorization.git", branch: "main"
 ```
 
 ## Contributing

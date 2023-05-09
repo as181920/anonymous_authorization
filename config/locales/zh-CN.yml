@@ -1,0 +1,40 @@
+---
+zh-CN:
+  anonymous_authorization:
+    engine: "匿名授权服务"
+    user: "用户"
+    binding: "关联"
+    dashboard: "概览"
+    collapse: "收起"
+    submit: "提交"
+    submitting: "提交中"
+    cancel: "取消"
+    back : "返回"
+    search: "搜索"
+    list: "列表"
+    back_list: "返回列表"
+    new: "新增"
+    show: "查看"
+    edit: "编辑"
+    destroy: "删除"
+    destroying: "删除中"
+    preview: "预览"
+    add: "添加"
+    move_out: "移出"
+    join_in: "加入"
+    settings: "设置"
+    handle: "操作"
+    refresh: "刷新"
+    show_all: "显示全部"
+    breadcrumbs:
+      root: "首页"
+      filler: "FILLER"
+  errors:
+    messages:
+      invalid_access_code: "密码不正确"
+  activerecord:
+    models:
+      anonymous_authorization/filler: "FILLER"
+    attributes:
+      anonymous_authorization/filler:
+        name: "NAME"

@@ -10,6 +10,21 @@ require "rails/test_help"
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("fixtures", __dir__)
   ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
-  ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
+  ActiveSupport::TestCase.file_fixture_path = File.join(ActiveSupport::TestCase.fixture_path, "files")
   ActiveSupport::TestCase.fixtures :all
 end
+
+require "minitest/mock"
+require "mocha/minitest"
+require "webmock/minitest"
+require "debug"
+
+require "minitest/reporters"
+Minitest::Reporters.use!
+
+require "factory_bot_rails"
+class ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
+end
+
+ActiveRecord.verify_foreign_keys_for_fixtures = false # Temporarily handle RuntimeError: Foreign key violations found in your fixture data.

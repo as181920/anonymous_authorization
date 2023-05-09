@@ -2,5 +2,7 @@ require "anonymous_authorization/version"
 require "anonymous_authorization/engine"
 
 module AnonymousAuthorization
-  # Your code goes here...
+  def self.table_name_prefix
+    "anon_"
+  end
 end

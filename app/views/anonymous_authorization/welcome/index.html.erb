@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+    <title><%= t "anonymous_authorization.engine" %></title>
+  </head>
+  <body>
+    <div style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <h1><%= params[:message].present? ? "Notice" : "Welcome" %></h1>
+      <p><%= params[:message].presence || t("anonymous_authorization.engine") %></p>
+    </div>
+  </body>
+</html>
