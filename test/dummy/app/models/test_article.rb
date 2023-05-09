@@ -1,0 +1,2 @@
+class TestArticle < ApplicationRecord
+end
