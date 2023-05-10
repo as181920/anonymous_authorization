@@ -13,5 +13,11 @@ module AnonymousAuthorization
       assert_predicate code, :present?
       assert AccessSessionService.new(@session_id).authorized?(@resource)
     end
+
+    test "should clear authorization" do
+      AccessSessionService.new(@session_id).clear(@resource)
+
+      assert_not AccessSessionService.new(@session_id).authorized?(@resource)
+    end
   end
 end

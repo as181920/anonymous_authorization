@@ -9,13 +9,13 @@ module AnonymousAuthorization
     end
 
     def create
-      redirect_url = session[:redirect_url].presence || request.referer || root_path
+      redirect_url = authorization_params[:redirect_url] || session[:redirect_url] || request.referer || root_path
 
       if AccessCodeService.new(@resource).current_code == authorization_params[:access_code]
         AccessSessionService.new(session.id).authorize(@resource, expires_at: authorization_params[:expires_at].presence)
         redirect_to redirect_url
       else
-        redirect_to redirect_url, alert: I18n.t("anonymous_authorization.errors.messages.invalid_access_code")
+        redirect_to redirect_url, alert: I18n.t("anonymous_authorization.invalid_access_code")
       end
     end
 
@@ -33,7 +33,7 @@ module AnonymousAuthorization
       end
 
       def authorization_params
-        params.fetch(:authorization, {}).permit :resource_gid, :access_code, :expires_at
+        params.fetch(:authorization, {}).permit :resource_gid, :access_code, :expires_at, :redirect_url
       end
 
       def clear_redirect_session

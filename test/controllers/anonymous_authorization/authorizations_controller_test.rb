@@ -6,6 +6,9 @@ module AnonymousAuthorization
 
     setup do
       @resource = dummy_articles(:one)
+      @session_id = Rack::Session::SessionId.new(SecureRandom.hex)
+      ActionDispatch::Request::Session.any_instance.stubs(:id).returns(@session_id)
+      AccessSessionService.new(@session_id).clear(@resource)
     end
 
     test "should get new" do
@@ -30,6 +33,19 @@ module AnonymousAuthorization
 
       assert_redirected_to root_url
       assert AccessSessionService.new(session.id).authorized?(@resource)
+    end
+
+    test "should forbid authorization with invalid access code" do
+      post authorizations_path, params: {
+        authorization: {
+          resource_gid: @resource.to_gid.to_param,
+          access_code: "WrongCode"
+        }
+      }
+
+      assert_redirected_to root_url
+      assert_not AccessSessionService.new(session.id).authorized?(@resource)
+      assert_equal I18n.t("anonymous_authorization.invalid_access_code"), flash[:alert]
     end
   end
 end

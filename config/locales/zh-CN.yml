@@ -28,12 +28,12 @@ zh-CN:
     show_all: "显示全部"
     authorize_success: "验证成功"
     authorize_fail: "验证失败"
+    invalid_access_code: "密码不正确"
     breadcrumbs:
       root: "首页"
       filler: "FILLER"
   errors:
     messages:
-      invalid_access_code: "密码不正确"
   activerecord:
     models:
       anonymous_authorization/filler: "FILLER"
