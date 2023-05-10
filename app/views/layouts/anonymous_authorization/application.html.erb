@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Anonymous authorization</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "匿名访问" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    "anonymous_authorization/application", media: "all" %>
-</head>
-<body>
+    <%= stylesheet_link_tag "layout_normal_v2", "data-turbo-track": "reload", media: "all" %>
+    <%= javascript_include_tag "layout_normal_v2", "data-turbo-track": "reload" %>
+    <%= yield(:head_additions) if content_for?(:head_additions) %>
+  </head>
+  <body>
 
-<%= yield %>
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+      <div class="body flex-grow-1 px-0 my-2">
+        <div class="container-fluid">
+          <%= yield(:custom_flash_messages) if content_for?(:custom_flash_messages) %>
 
-</body>
+          <%= yield %>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div></div>
+        <div class="ms-auto"></div>
+      </footer>
+    </div>
+
+  </body>
 </html>

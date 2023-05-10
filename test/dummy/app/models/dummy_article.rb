@@ -1,0 +1,2 @@
+class DummyArticle < ApplicationRecord
+end

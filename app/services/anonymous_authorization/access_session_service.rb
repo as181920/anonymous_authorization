@@ -6,9 +6,9 @@ module AnonymousAuthorization
       @session_id = session_id
     end
 
-    def authorize(resource, expires_in: 1.day)
+    def authorize(resource, expires_at: 1.day.from_now)
       AccessCodeService.new(resource).access_code
-        .tap { |code| cache.write(cache_key(resource), code, expires_in:) }
+        .tap { |code| cache.write(cache_key(resource), code, expires_at:) }
     end
 
     def authorized?(resource)

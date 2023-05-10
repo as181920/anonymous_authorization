@@ -3,7 +3,7 @@ require "test_helper"
 module AnonymousAuthorization
   class AccessSessionServiceTest < ActiveSupport::TestCase
     setup do
-      @resource = test_articles(:one)
+      @resource = dummy_articles(:one)
       @session_id = "session_01"
     end
 

@@ -1,9 +1,24 @@
-<h1>New authorization</h1>
+<div class="row mt-2">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
 
-<%= render "form", authorization: @authorization %>
+        <% params[:resource_name].presence&.then do |name| %>
+          <%= tag.h5 name, class: "mb-4" %>
+        <% end %>
 
-<br>
-
-<div>
-  <%= link_to "Back to authorizations", authorizations_path %>
+        <%= form_with url: url_for(), method: :get, class: "row gy-2 gx-3 align-items-center justify-content-center mb-4 d-flex" do |form| %>
+          <div class="col-auto">
+            <div class="input-group">
+              <%= form.label :auth_code, "密码", class: "input-group-text" %>
+              <%= form.text_field :auth_code, placeholder: "请输入密码", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-auto">
+            <%= form.button "提交", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

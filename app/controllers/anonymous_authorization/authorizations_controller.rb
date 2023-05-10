@@ -1,60 +1,43 @@
 module AnonymousAuthorization
   class AuthorizationsController < ApplicationController
-    before_action :set_authorization, only: %i[ show edit update destroy ]
+    before_action :set_resource, :ensure_resource_presence, only: %i[new create]
 
-    # GET /authorizations
-    def index
-      @authorizations = Authorization.all
-    end
+    after_action :clear_redirect_session, only: [:create]
 
-    # GET /authorizations/1
-    def show
-    end
-
-    # GET /authorizations/new
     def new
-      @authorization = Authorization.new
+      session[:redirect_url] = params[:redirect_url] || request.referer
     end
 
-    # GET /authorizations/1/edit
-    def edit
-    end
-
-    # POST /authorizations
     def create
-      @authorization = Authorization.new(authorization_params)
+      redirect_url = session[:redirect_url].presence || request.referer || root_path
 
-      if @authorization.save
-        redirect_to @authorization, notice: "Authorization was successfully created."
+      if AccessCodeService.new(@resource).current_code == authorization_params[:access_code]
+        AccessSessionService.new(session.id).authorize(@resource, expires_at: authorization_params[:expires_at].presence)
+        redirect_to redirect_url
       else
-        render :new, status: :unprocessable_entity
+        redirect_to redirect_url, alert: I18n.t("anonymous_authorization.errors.messages.invalid_access_code")
       end
-    end
-
-    # PATCH/PUT /authorizations/1
-    def update
-      if @authorization.update(authorization_params)
-        redirect_to @authorization, notice: "Authorization was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
-
-    # DELETE /authorizations/1
-    def destroy
-      @authorization.destroy
-      redirect_to authorizations_url, notice: "Authorization was successfully destroyed."
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_authorization
-        @authorization = Authorization.find(params[:id])
+
+      def set_resource
+        @resource = (params.dig(:authorization, :resource_gid) || params[:resource_gid])
+          &.then { |resource_gid| GlobalID::Locator.locate resource_gid }
       end
 
-      # Only allow a list of trusted parameters through.
+      def ensure_resource_presence
+        return if @resource.present?
+
+        render :invalid_resource
+      end
+
       def authorization_params
-        params.fetch(:authorization, {})
+        params.fetch(:authorization, {}).permit :resource_gid, :access_code, :expires_at
+      end
+
+      def clear_redirect_session
+        session.delete(:redirect_url) if session[:redirect_url].present?
       end
   end
 end

@@ -26,6 +26,8 @@ zh-CN:
     handle: "操作"
     refresh: "刷新"
     show_all: "显示全部"
+    authorize_success: "验证成功"
+    authorize_fail: "验证失败"
     breadcrumbs:
       root: "首页"
       filler: "FILLER"

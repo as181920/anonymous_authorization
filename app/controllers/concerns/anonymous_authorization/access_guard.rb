@@ -1,7 +1,10 @@
 module AnonymousAuthorization
   module AccessGuard
     extend ActiveSupport::Concern
-    included do
-    end
+
+    InvalidResourceGid = Class.new(StandardError)
+
+    private
+
   end
 end

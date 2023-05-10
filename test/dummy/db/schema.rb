@@ -24,10 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_061948) do
     t.index ["accessible_type", "accessible_id"], name: "index_anon_access_codes_on_accessible"
   end
 
-  create_table "test_articles", force: :cascade do |t|
+  create_table "dummy_articles", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
