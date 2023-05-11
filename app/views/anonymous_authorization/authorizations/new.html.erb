@@ -7,11 +7,13 @@
           <%= tag.h5 name, class: "mb-4" %>
         <% end %>
 
-        <%= form_with url: url_for(), method: :get, class: "row gy-2 gx-3 align-items-center justify-content-center mb-4 d-flex" do |form| %>
+        <%= form_with scope: :authorization, url: authorizations_path, class: "row gy-2 gx-3 align-items-center justify-content-center mb-4 d-flex" do |form| %>
+          <%= form.hidden_field :resource_gid, value: params[:resource_gid] %>
+          <%= form.hidden_field :expires_at, value: params[:expires_at] %>
           <div class="col-auto">
             <div class="input-group">
-              <%= form.label :auth_code, "密码", class: "input-group-text" %>
-              <%= form.text_field :auth_code, placeholder: "请输入密码", class: "form-control" %>
+              <%= form.label :access_code, "密码", class: "input-group-text" %>
+              <%= form.text_field :access_code, placeholder: "请输入密码", class: "form-control" %>
             </div>
           </div>
           <div class="col-auto">
