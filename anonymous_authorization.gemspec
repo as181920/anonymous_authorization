@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary     = "Enable anonymous authorization for resource by access code"
   spec.description = "Extracting common functionality for anonymous authorization to resource."
   spec.license     = "MIT"
-  spec.required_ruby_version = ">= 3.1"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.metadata["allowed_push_host"] = "https://gems.dd-life.com"
   spec.metadata["rubygems_mfa_required"] = "true"
