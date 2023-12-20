@@ -17,4 +17,4 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-task default: %i[test rubocop]
+task default: %i[rubocop test]

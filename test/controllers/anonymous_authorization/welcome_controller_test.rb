@@ -12,7 +12,7 @@ module AnonymousAuthorization
       get root_path
 
       assert_response :success
-      assert_includes @response.parsed_body, I18n.t("anonymous_authorization.engine")
+      assert_includes @response.body, I18n.t("anonymous_authorization.engine")
     end
 
     test "should show message on index" do
@@ -20,7 +20,7 @@ module AnonymousAuthorization
       get welcome_index_path(message:)
 
       assert_response :success
-      assert_includes @response.parsed_body, message
+      assert_includes @response.body, message
     end
   end
 end

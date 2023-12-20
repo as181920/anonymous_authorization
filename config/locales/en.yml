@@ -1,0 +1,47 @@
+---
+en:
+  anonymous_authorization:
+    engine: "Anonymous Authorization"
+    user: "User"
+    binding: "Binding"
+    dashboard: "Dashboard"
+    collapse: "Collapse"
+    submit: "Submit"
+    submitting: "Submitting"
+    cancel: "Cancel"
+    back : "Back"
+    search: "Search"
+    list: "List"
+    back_list: "Back to list"
+    new: "New"
+    show: "Show"
+    edit: "Edit"
+    destroy: "Delete"
+    destroying: "Deleting"
+    preview: "Preview"
+    add: "Add"
+    move_out: "Move out"
+    join_in: "Join in"
+    settings: "Settings"
+    handle: "Handle"
+    refresh: "Refresh"
+    show_all: "Show all"
+    required: "required"
+    authorize_success: "Authorize success"
+    authorize_fail: "Authorize fail"
+    invalid_access_code: "Invalid access code"
+    breadcrumbs:
+      home: "Home"
+      filler: "FILLER"
+    flash:
+      invalid_resource: "Invalid resource"
+      ensure_valid_resource_url: "Please ensure the resource url is valid."
+  errors:
+    messages:
+  activerecord:
+    models:
+      anonymous_authorization/filler: "FILLER"
+    attributes:
+      anonymous_authorization/access_code:
+        code: "Code"
+        expires_at: "Expires at"

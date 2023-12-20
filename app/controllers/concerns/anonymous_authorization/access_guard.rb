@@ -10,7 +10,7 @@ module AnonymousAuthorization
         return if AccessSessionService.new(session.id).authorized?(resource)
 
         redirect_to anonymous_authorization.new_authorization_path \
-          redirect_url: (redirect_url || request.url),
+          redirect_url: redirect_url.presence || request.url,
           resource_gid: resource.to_gid.to_param,
           resource_name: name
       end

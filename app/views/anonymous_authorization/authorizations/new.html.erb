@@ -1,26 +1,34 @@
-<div class="row mt-2">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+<% content_for :head_additions do %>
+  <%= javascript_import_module_tag "easy_style/stimulus" %>
+  <%= javascript_import_module_tag "easy_style/controllers/form_controller" %>
+<% end %>
 
-        <% params[:resource_name].presence&.then do |name| %>
-          <%= tag.h5 name, class: "mb-4" %>
-        <% end %>
+<section class="flex-auto m-3">
+  <div class="card h-100 d-flex flex-center">
+    <div class="card-body" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
 
-        <%= form_with scope: :authorization, url: authorizations_path, class: "row gy-2 gx-3 align-items-center justify-content-center mb-4 d-flex" do |form| %>
-          <%= form.hidden_field :resource_gid, value: params[:resource_gid] %>
-          <%= form.hidden_field :expires_at, value: params[:expires_at] %>
-          <div class="col-auto">
-            <div class="input-group">
-              <%= form.label :access_code, "密码", class: "input-group-text" %>
-              <%= form.text_field :access_code, placeholder: "请输入密码", class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-auto">
-            <%= form.button "提交", class: "btn btn-primary" %>
-          </div>
-        <% end %>
-      </div>
+      <% params[:resource_name].presence&.then do |name| %>
+        <%= tag.h3 name, class: "mb-4" %>
+      <% end %>
+
+      <%= form_with scope: :authorization, url: authorizations_path, data: { controller: "form" }, class: "form" do |form| %>
+        <%= form.hidden_field :resource_gid, value: params[:resource_gid] %>
+        <%= form.hidden_field :expires_at, value: params[:expires_at] %>
+
+        <div class="form-field">
+          <%= form.label :access_code, AnonymousAuthorization::AccessCode.human_attribute_name("code"), class: "form-label me-2 d-none" %>
+          <%= form.text_field :access_code,
+            data: { action: "form#validateField" },
+            placeholder: "请输入密码",
+            class: "form-control",
+            required: true %>
+          <%= tag.div t("anonymous_authorization.required"), class: "invalid-feedback" %>
+          <%= button_tag data: { action: "form#validateForm" }, class: "btn btn-primary ms-3" do %>
+            <%= tag.span class: "loading-spinner" %>
+            <%= tag.span t("anonymous_authorization.submit") %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
-</div>
+</section>

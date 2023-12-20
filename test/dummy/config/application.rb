@@ -51,6 +51,6 @@ module Dummy
       password: ENV.fetch("action_mailer_smtp_password", nil),
       authentication: "plain"
     }
-    config.action_mailer.preview_path = "#{AnonymousAuthorization::Engine.root}/test/mailers/previews"
+    config.action_mailer.preview_paths << "#{AnonymousAuthorization::Engine.root}/test/mailers/previews"
   end
 end

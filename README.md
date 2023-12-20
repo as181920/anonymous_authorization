@@ -1,4 +1,5 @@
 # AnonymousAuthorization
+
 Enable Anonymous authorization for resource by access_code(password)
 
 ## Usage

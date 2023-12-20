@@ -19,7 +19,7 @@ module AnonymousAuthorization
       )
 
       assert_response :success
-      assert_includes @response.parsed_body, @resource.name
+      assert_includes @response.body, @resource.name
       assert_equal root_url, session[:redirect_url]
     end
 

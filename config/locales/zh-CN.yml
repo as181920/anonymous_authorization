@@ -26,17 +26,22 @@ zh-CN:
     handle: "操作"
     refresh: "刷新"
     show_all: "显示全部"
+    required: "必填"
     authorize_success: "验证成功"
     authorize_fail: "验证失败"
     invalid_access_code: "密码不正确"
     breadcrumbs:
-      root: "首页"
+      homt: "首页"
       filler: "FILLER"
+    flash:
+      invalid_resource: "无效资源"
+      ensure_valid_resource_url: "请获取正确的资源链接"
   errors:
     messages:
   activerecord:
     models:
       anonymous_authorization/filler: "FILLER"
     attributes:
-      anonymous_authorization/filler:
-        name: "NAME"
+      anonymous_authorization/access_code:
+        code: "密码"
+        expires_at: "失效时间"
