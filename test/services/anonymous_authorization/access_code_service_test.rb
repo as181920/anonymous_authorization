@@ -31,5 +31,13 @@ module AnonymousAuthorization
 
       assert_equal access_code.code, AccessCodeService.new(@resource).access_code
     end
+
+    test "should authorize access code" do
+      code = AccessCodeService.new(@resource).access_code
+
+      assert AccessCodeService.new(@resource).authorize?(code)
+      assert AccessCodeService.new(@resource).authorize?(" #{code} ")
+      assert_not AccessCodeService.new(@resource).authorize?("ERROR CODE")
+    end
   end
 end

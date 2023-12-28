@@ -22,5 +22,9 @@ module AnonymousAuthorization
         AccessCode.find_by(accessible: resource)&.code
       end
     end
+
+    def authorize?(code)
+      current_code == code&.strip
+    end
   end
 end

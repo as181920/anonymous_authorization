@@ -11,7 +11,7 @@ module AnonymousAuthorization
     def create
       redirect_url = authorization_params[:redirect_url] || session[:redirect_url] || request.referer || root_path
 
-      if AccessCodeService.new(@resource).current_code == authorization_params[:access_code]
+      if AccessCodeService.new(@resource).authorize?(authorization_params[:access_code])
         AccessSessionService.new(session.id).authorize(@resource, expires_at: authorization_params[:expires_at].presence)
         redirect_to redirect_url
       else

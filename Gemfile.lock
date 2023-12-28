@@ -1,6 +1,6 @@
 GIT
   remote: git@gitlab.dd-life.com:corp.front_end/easy_style_engine.git
-  revision: 61d61b39f4af0e24844a0e9f94ce40c8418d6026
+  revision: 74f277115ceb946000752726b6d59d2d0d73c44e
   branch: main
   specs:
     easy_style (0.1.0)
