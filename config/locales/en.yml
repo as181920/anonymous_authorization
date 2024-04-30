@@ -27,6 +27,8 @@ en:
     refresh: "Refresh"
     show_all: "Show all"
     required: "required"
+    anonymous_access: "Anonymous access"
+    access_code: "Access code"
     authorize_success: "Authorize success"
     authorize_fail: "Authorize fail"
     invalid_access_code: "Invalid access code"

@@ -27,6 +27,8 @@ zh-CN:
     refresh: "刷新"
     show_all: "显示全部"
     required: "必填"
+    anonymous_access: "匿名访问"
+    access_code: "访问密码"
     authorize_success: "验证成功"
     authorize_fail: "验证失败"
     invalid_access_code: "密码不正确"
