@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_061948) do
+ActiveRecord::Schema[8.0].define(version: 2023_05_09_061948) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "anon_access_codes", force: :cascade do |t|
     t.string "accessible_type"
@@ -27,5 +27,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_061948) do
   create_table "dummy_articles", force: :cascade do |t|
     t.string "name"
   end
-
 end

@@ -1,11 +1,18 @@
 before_script:
   - pwd
+  - rvm use || rvm install $(<.ruby-version)
   - ruby -v
   - bundle install -j $(nproc)
 
 stages:
-  - test
   - rubocop
+  - test
+
+rubocop:
+  stage: rubocop
+  when: always
+  script:
+    - bin/rails rubocop
 
 test:
   stage: test
@@ -14,13 +21,5 @@ test:
   script:
     - bundle install -j $(nproc)
     - ln -s /home/gitlab-runner/shared/configs/as_projects/common_engines/anonymous_authorization/database.yml ./test/dummy/config/database.yml
-    - bin/rails db:drop RAILS_ENV=test
-    - bin/rails db:create RAILS_ENV=test
-    - bin/rails db:migrate RAILS_ENV=test
+    - bin/rails db:reset RAILS_ENV=test
     - bin/rails test
-
-rubocop:
-  stage: rubocop
-  when: always
-  script:
-    - bin/rails rubocop

@@ -27,7 +27,8 @@ guard :bundler do
   files.each { |file| watch(helper.real_path(file)) }
 end
 
-guard :rubocop do
+guard :rubocop, cli: ["--format", "fuubar"], cmd: "./bin/rubocop" do
+  watch(/.+\.erb$/)
   watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end

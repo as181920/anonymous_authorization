@@ -5,12 +5,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem "debug"
-gem "gem-ctags"
+gem "fuubar"
 gem "rubocop"
-gem "rubocop-erb", "~> 0.3"
+gem "rubocop-erb"
 gem "rubocop-minitest"
-gem "rubocop-performance"
-gem "rubocop-rails"
+gem "rubocop-rails-omakase"
 gem "rubocop-rake"
 
 gem "guard"
