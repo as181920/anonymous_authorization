@@ -1,9 +1,9 @@
 GIT
   remote: git@gitlab.dd-life.com:corp.front_end/easy_style_engine.git
-  revision: 2b21b5daeae4be3530b457523f9abbd8c830f1d4
+  revision: 3afbffe3daa872d83a0129e7e80487b712335550
   branch: main
   specs:
-    easy_style (0.1.0)
+    easy_style (0.3.0)
       breadcrumbs_on_rails
       browser
       chartkick
