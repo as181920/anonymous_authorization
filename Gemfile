@@ -15,7 +15,7 @@ gem "guard"
 gem "guard-bundler"
 gem "guard-minitest"
 gem "guard-rubocop"
-gem "minitest"
+gem "minitest", "< 6" # Rails 8.1 and minitest-reporters use the Minitest 5 runner API.
 gem "minitest-reporters"
 
 gem "pg"

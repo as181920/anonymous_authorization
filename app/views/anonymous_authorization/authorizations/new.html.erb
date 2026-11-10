@@ -12,6 +12,7 @@
       <% end %>
 
       <%= form_with scope: :authorization, url: authorizations_path, data: { controller: "form" }, class: "form" do |form| %>
+        <%= form.hidden_field :redirect_url, value: @redirect_url %>
         <%= form.hidden_field :resource_gid, value: params[:resource_gid] %>
         <%= form.hidden_field :expires_at, value: params[:expires_at] %>
 
